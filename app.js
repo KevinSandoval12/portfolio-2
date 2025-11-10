@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const contacts = [];
 
-const PORT = 3100;
+const PORT = 3111;
 // Define a default "route" ('/')
 // req: contains information about the incoming request
 // res: allows us to send back a response to the client
