@@ -62,6 +62,11 @@ document.getElementById("contact-form").onsubmit = () => {
     }
   }
 
+    const formatHidden = document.getElementById("format-hidden");
+  if (html.checked) formatHidden.value = "html";
+  else if (text.checked) formatHidden.value = "text";
+  else formatHidden.value = "";
+
   return isValid;
 }; // End of onsubmit form
 

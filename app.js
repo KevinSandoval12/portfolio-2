@@ -101,7 +101,6 @@ app.post("/confirm", async (req, res) => {
         "Sorry, there was an error processing your contact. Please try again."
       );
   }
-  res.render("confirmation");
 });
 
 app.get("/admin", async (req, res) => {
@@ -148,6 +147,20 @@ app.post("/submit-form", async (req, res) => {
     const contact = req.body;
 
     contact.timestamp = new Date();
+
+    const email = contact.email || null;
+    const format = contact.format || null;
+    const message = contact.message || null;
+    const metInfo = contact.metInfo || null;
+
+    const wantsMailingList = contact.mailingList === "on";
+    if (wantsMailingList && (!email || !format)) {
+      return res.status(400).send(
+      "Please provide a valid email and format if you want to join the mailing list."
+      );
+    }
+
+
 
     console.log("New contact recieved:", contact);
     const sql = `INSERT INTO contacts
